@@ -1,0 +1,60 @@
+.env
+
+data/data
+docs/
+src/disagreement_detection/mlruns
+data/processed_unstructured
+remove_duplicate_rows.ipynb
+temp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+
+# Ignore virtual environments
+mlruns/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore dependency caches
+pip-wheel-metadata/
+*.egg-info/
+*.whl
+
+# Ignore datasets (can be large and regenerated)
+data/processed/
+data/raw/
+data/split/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore model checkpoints & embeddings
+models/
+models/*
+
+# Ignore Jupyter notebook checkpoints
+notebooks/.ipynb_checkpoints/
+
+# Ignore cached results and temporary files
+*.tmp
+*.cache
+*.pkl
+*.joblib
+*.npy
+*.h5
+
+# Ignore hidden files from IDEs/editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore Hugging Face/transformers cache
+~/.cache/huggingface/
