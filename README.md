@@ -93,18 +93,6 @@ This repository contains the implementation and data processing pipeline for the
 └── 📜 workflow_drawio.png              # Visual workflow diagram  
 ```
 
-## Data Processing Pipeline
-
-The data processing workflow includes several Python scripts in the `data/` directory:
-
-- `prepare_sample_subset.py`: Creates initial sample datasets
-- `prepare_new_subset.py`: Generates additional data subsets
-- `convert_json_to_csv.py`: Converts JSON data to CSV format
-- `merge_search_critique.py`: Merges search results with critique data
-- `merge_final.py`: Performs final data merging
-- `aggregate.py`: Aggregates results
-- `split_dataset.py`: Splits data into training and testing sets
-
 ## Methodology
 
 Our approach follows a systematic workflow:
@@ -135,21 +123,7 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-## Documentation
-
-For more detailed information, refer to the following documents in the `docs/` directory:
-- Main Paper: "Consensus Analysis in Academic Peer Review Using Search-Augmented Large Language Models"
-- Implementation Details: "Benchmark on Peer Review Toxic Detection.pdf"
-- Research Context: "Large Language Models Penetration in Scholarly Writing and Peer Review.pdf"
-
-## MLflow Tracking
-
-Experiment tracking and model artifacts are stored in the `mlruns/` directory. Use MLflow UI to view experiments:
-
-```bash
-mlflow ui
-```
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
+Research Paper: "MetaSearch: Search-Augmented LLM with Reasoning for Consensus Resolution in Peer Review". 
