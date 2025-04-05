@@ -154,4 +154,4 @@ pip install -r requirements.txt
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
 
-Research Paper: "MetaSearch: Search-Augmented LLM with Reasoning for Consensus Resolution in Peer Review". ([Back to Top](https://github.com/AnonymousSubmission45/MetaSearch/main/README.md#metasearch-search-augmented-llm-with-reasoning-for-consensus-resolution-in-peer-review) 🔝)
+Research Paper: "MetaSearch: Search-Augmented LLM with Reasoning for Consensus Resolution in Peer Review" ([Back to Top](https://github.com/AnonymousSubmission45/MetaSearch/blob/main/README.md#metasearch-search-augmented-llm-with-reasoning-for-consensus-resolution-in-peer-review)🔝)
