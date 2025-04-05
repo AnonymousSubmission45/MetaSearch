@@ -1,6 +1,6 @@
-# Consensus Analysis in Academic Peer Review Using Search-Augmented Large Language Models
+# MetaSearch: Search-Augmented LLM with Reasoning for Consensus Resolution in Peer Review
 
-This repository contains the implementation and data processing pipeline for the paper "Consensus Analysis in Academic Peer Review Using Search-Augmented Large Language Models".
+This repository contains the implementation and data processing pipeline for the paper "MetaSearch: Search-Augmented LLM with Reasoning for Consensus Resolution in Peer Review".
 
 ## Repository Structure
 
