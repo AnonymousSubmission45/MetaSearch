@@ -5,92 +5,125 @@ This repository contains the implementation and data processing pipeline for the
 ## Repository Structure
 
 ```
-📂 Automated_Consensus_Analysis/
-│── 📜 README.md                      # Project overview, setup instructions, usage  
-│── 📜 requirements.txt                # Python dependencies  
-│── 📜 .gitignore                      # Ignore unnecessary files (e.g., datasets, logs, cache)  
-│── 📜 LICENSE                         # License information  
-│── 📜 repository_structure.txt         # Auto-generated repository structure  
-│  
-├── 📂 data/                            # Dataset storage and processing scripts  
-│   ├── 📜 aggregate.py                 # Aggregate extracted data  
-│   ├── 📜 convert_json_to_csv.py       # Convert dataset formats  
-│   ├── 📜 merge_final.py               # Merge finalized datasets  
-│   ├── 📜 merge_search_critique.py     # Merge search results with critiques  
-│   ├── 📜 prepare_new_subset.py        # Create a new subset of PeerSum  
-│   ├── 📜 prepare_sample_subset.py     # Generate a sample dataset  
-│   ├── 📂 processed/                   # Processed dataset storage  
-│   │   ├── 📂 consensus_resolution/    # Consensus-related outputs  
-│   │   │   ├── 📜 combined_final.csv  
-│   │   │   ├── 📜 disagreement_resolution.csv  
-│   │   │   ├── 📜 disagreement_resolution_final.csv  
-│   │   │   ├── 📜 meta_reviews.csv  
-│   │   │   └── 📜 meta_reviews_final.csv  
-│   │   ├── 📂 critique_points/         # Extracted critique points  
-│   │   │   ├── 📜 critique_points_llm.json  
-│   │   │   ├── 📜 critique_points_llm_2.json  
-│   │   │   ├── 📜 critique_points_nlp.json  
-│   │   │   └── 📜 critique_points_nlp_2.json  
-│   │   ├── 📂 disagreement_detection/  # Disagreement detection outputs  
-│   │   │   ├── 📜 disagreement_aggregated.csv  
-│   │   │   ├── 📜 disagreement_scores_llm.json  
-│   │   │   ├── 📜 disagreement_scores_nlp.json  
-│   │   │   ├── 📜 metrics.csv  
-│   │   └── 📂 search/                  # Search-retrieved evidence  
-│   │       ├── 📜 logs.json  
-│   │       ├── 📜 papers_with_search_final.csv  
-│   │       ├── 📜 search_final_2.json  
-│   │       ├── 📜 search_intermediate.json  
-│   │       └── 📜 search_intermediate_2.json  
-│   ├── 📂 raw/                         # Original dataset files  
-│   │   ├── 📜 data-00000-of-00001.arrow  
-│   │   ├── 📜 dataset_info.json  
-│   │   └── 📜 state.json  
-│   ├── 📂 split/                       # Train/Test/Validation splits  
-│   │   ├── 📜 sample_subset_train.json  
-│   │   ├── 📂 test/                     # Test set  
-│   │   │   ├── 📜 data-00000-of-00001.arrow  
-│   │   │   ├── 📜 dataset_info.json  
-│   │   │   └── 📜 state.json  
-│   │   ├── 📂 train/                    # Training set  
-│   │   │   ├── 📜 data-00000-of-00001.arrow  
-│   │   │   ├── 📜 dataset_info.json  
-│   │   │   └── 📜 state.json  
-│   │   ├── 📂 val/                      # Validation set  
-│   │   │   ├── 📜 data-00000-of-00001.arrow  
-│   │   │   ├── 📜 dataset_info.json  
-│   │   │   └── 📜 state.json  
-│   └── 📜 split_dataset.py              # Split data into subsets  
-│  
-├── 📂 docs/                            # Research papers and references  
-│   ├── 📜 Benchmark on Peer Review Toxic Detection.pdf  
-│   ├── 📜 Large Language Models Penetration in Scholarly Writing and Peer Review.pdf  
-│   ├── 📜 Paper Quality Assessment Individual Wisdom Metrics.pdf  
-│   ├── 📜 ReviewEval An Evaluation Framework for AI-Generated Reviews.pdf  
-│  
-├── 📂 notebooks/                       # Jupyter notebooks for analysis  
-│   ├── 📜 01_Exploratory_Analysis.ipynb  
-│   ├── 📜 02_EDA_CritiqueLLM.ipynb  
-│   ├── 📜 03_Disagreement_Scores_LLM.ipynb  
-│   ├── 📜 04_Search_Result_Analysis.ipynb  
-│   ├── 📜 05_Retrieved_Evidences_Analysis.ipynb  
-│   ├── 📜 06_Disagreement_Resolution.ipynb  
-│   ├── 📜 07_Meta_Review_Comparison.ipynb  
-│  
-├── 📂 src/                             # Core codebase  
-│   ├── 📂 consensus_resolution/        # LLM-based consensus synthesis  
-│   │   ├── 📜 disagreement_resolution_deepseek.py  
-│   │   └── 📜 meta_review_generation.py  
-│   ├── 📂 critique_points_extraction/  # Extract critique points  
-│   │   ├── 📜 extract_critique_llm.py  
-│   │   └── 📜 extract_critique_nlp.py  
-│   ├── 📂 disagreement_detection/      # Disagreement detection  
-│   │   ├── 📜 compare_reviews_llm.py  
-│   │   └── 📜 compare_reviews_nlp.py  
-│   ├── 📂 search_retrieval/            # Search-Augmented Verification  
-│   │   └── 📜 search_agent.ipynb  
-│  
-└── 📜 workflow_drawio.png              # Visual workflow diagram  
+MetaSearch/
+├── .gitignore                         # Files to ignore
+├── LICENSE                            # License info
+├── README.md                          # Overview, setup, and usage
+├── requirements.txt                   # Dependencies
+├── Supplementary Materials.pdf        # PDF of Supplementary Materials
+├── workflow_drawio.png                # Visual workflow diagram
+├── data                               # Data processing and datasets
+│   ├── aggregate.py                   # Aggregates extracted data
+│   ├── convert_json_to_csv.py         # Converts JSON files to CSV
+│   ├── merge_final.py                 # Merges finalized datasets
+│   ├── merge_search_critique.py       # Merges search results with critiques
+│   ├── prepare_new_subset.py          # Prepares a new dataset subset
+│   ├── prepare_sample_subset.py       # Prepares a sample dataset subset
+│   ├── processed                      # Processed data outputs
+│   │   ├── consensus_resolution       # Consensus resolution outputs
+│   │   │   ├── aggregated_dr.csv              # Aggregated disagreement resolution data
+│   │   │   ├── aggregated_mr.csv              # Aggregated meta-review data
+│   │   │   ├── combined_final.csv             # Combined final dataset
+│   │   │   ├── disaagreement_resolution_final.csv  # Final resolution with discrepancies
+│   │   │   ├── disagreement_resolution.csv     # Disagreement resolution data
+│   │   │   ├── disagreement_resolution_final.csv# Final disagreement resolution data
+│   │   │   ├── meta_reviews.csv                # Generated meta reviews
+│   │   │   └── meta_reviews_final.csv          # Final meta reviews
+│   │   ├── critique_points            # Extracted critique points
+│   │   │   ├── critique_points_llm.json        # LLM-extracted (v1)
+│   │   │   ├── critique_points_llm_2.json      # LLM-extracted (v2)
+│   │   │   ├── critique_points_nlp.json        # NLP-extracted (v1)
+│   │   │   └── critique_points_nlp_2.json      # NLP-extracted (v2)
+│   │   ├── disagreement_detection     # Disagreement detection outputs
+│   │   │   ├── aggregated_ds_llm.csv            # LLM-based aggregated disagreement scores
+│   │   │   ├── disagreement_aggregated.csv      # Aggregated disagreement data (v1)
+│   │   │   ├── disagreement_aggregated_2.csv    # Aggregated disagreement data (v2)
+│   │   │   ├── disagreement_scores_llm.csv      # LLM disagreement scores (CSV)
+│   │   │   ├── disagreement_scores_llm.json     # LLM disagreement scores (JSON, v1)
+│   │   │   ├── disagreement_scores_llm_2.csv      # LLM disagreement scores (CSV, v2)
+│   │   │   ├── disagreement_scores_llm_2.json     # LLM disagreement scores (JSON, v2)
+│   │   │   ├── disagreement_scores_llm_2_arya.json# Alternative LLM disagreement scores
+│   │   │   ├── disagreement_scores_nlp.json       # NLP disagreement scores
+│   │   │   └── metrics.csv                        # Evaluation metrics
+│   │   └── search                     # Search-retrieved evidence and logs
+│   │       ├── aggregated_cp.json               # Aggregated critique points from search
+│   │       ├── aggregated_papers_with_search.csv # Papers with search annotations
+│   │       ├── critique_points_llm_2.json         # Additional LLM critique points (v2)
+│   │       ├── drive-download-20250329T065307Z-001# Drive download (timestamped)
+│   │       ├── logs.json                         # Search process logs
+│   │       ├── papers_with_search_2.csv           # Papers with search results (CSV, v2)
+│   │       ├── papers_with_search_2.json          # Papers with search results (JSON, v2)
+│   │       ├── papers_with_search_final.csv       # Final papers with search results
+│   │       ├── papers_with_search_initial.json    # I nitial papers with search results
+│   │       ├── papers_with_search_progress.csv    # Search progress tracking
+│   │       ├── search_batch_2.json                # Search results batch (v2)
+│   │       ├── search_final_2.json                # Final search results (v2)
+│   │       ├── search_intermediate.json           # Intermediate search results (v1)
+│   │       └── search_intermediate_2.json         # Intermediate search results (v2)
+│   ├── raw                           # Original, unprocessed data
+│   │   ├── cache-2ff1e739000f2062.arrow         # Cached data (v1)
+│   │   ├── cache-3465735dd11c43b2.arrow         # Cached data (v2)
+│   │   ├── cache-48201879335d942f.arrow         # Cached data (v3)
+│   │   ├── data-00000-of-00001.arrow            # Primary raw data file
+│   │   ├── dataset_info.json                    # Dataset metadata
+│   │   └── state.json                           # Data processing state
+│   ├── split                         # Dataset splits (train/test/val)
+│   │   ├── sample_subset_train.json             # Sample training subset (v1)
+│   │   ├── sample_subset_train_2.json           # Sample training subset (v2)
+│   │   ├── test                      # Test split
+│   │   │   ├── data-00000-of-00001.arrow        # Test data
+│   │   │   ├── dataset_info.json                # Test info
+│   │   │   └── state.json                       # Test state
+│   │   ├── test.json                            # Test metadata
+│   │   ├── train                     # Training split
+│   │   │   ├── data-00000-of-00001.arrow        # Train data
+│   │   │   ├── dataset_info.json                # Train info
+│   │   │   └── state.json                       # Train state
+│   │   ├── train.json                           # Training metadata
+│   │   ├── val                       # Validation split
+│   │   │   ├── data-00000-of-00001.arrow        # Validation data
+│   │   │   ├── dataset_info.json                # Validation info
+│   │   │   └── state.json                       # Validation state
+│   │   └── val.json                             # Validation metadata
+│   └── split_dataset.py                # Generates data splits
+├── figures                          # Visualizations and figures (mentioned in detail in Supplementary Materials PDF document)
+│   ├── Acceptance vs. Review Ratings.png
+│   ├── Average Disagreement Score Trend (NeurIPS and ICLR).png
+│   ├── Cosine similarity - Generated Meta Review vs Original Meta Review.png
+│   ├── Distribution of Disagreement Scores.png
+│   ├── Distribution of Review Lengths.png
+│   ├── Distribution of Reviewer Disagreements.png
+│   ├── Jaccard Similarity Distributions.png
+│   ├── Review Length Distribution by Confidence Score.png
+│   ├── Review Rating Distribution for Accepted vs Rejected Papers.png
+│   ├── SOTA Results and Paper Title Similarity Score.png
+│   ├── Sentiment Score Distribution for Clarity.png
+│   ├── Sentiment Subjectivity Histogram.png
+│   └── figures_in_paper
+│       ├── Review Rating Distribution by Paper Acceptance.png
+│       ├── cosine.png
+│       └── meta_review_bert.png
+├── notebooks                        # Jupyter notebooks for analysis
+│   ├── 01_Exploratory_Analysis.ipynb
+│   ├── 02_EDA_CritiqueLLM.ipynb
+│   ├── 03_Disagreement_Scores_LLM.ipynb
+│   ├── 04_Search_Result_Analysis.ipynb
+│   ├── 05_Retrieved_Evidences_Analysis.ipynb
+│   ├── 06_Disagreement_Resolution.ipynb
+│   └── 07_Meta_Review_Comparison.ipynb
+├── src                              # Core source code
+│   ├── consensus_resolution
+│   │   ├── disagreement_resolution_deepseek.py  # DeepSeek-based resolution
+│   │   └── meta_review_generation.py            # Meta review generation
+│   ├── critique_points_extraction
+│   │   ├── extract_critique_llm.py               # LLM-based extraction
+│   │   └── extract_critique_nlp.py               # NLP-based extraction
+│   ├── disagreement_detection
+│   │   ├── compare_reviews_llm.py                # LLM-based comparison
+│   │   └── compare_reviews_nlp.py                # NLP-based comparison
+│   └── search_retrieval
+│       ├── search_agent.ipynb                    # Search agent exploration
+└       └── search_agent.py                       # Search agent implementation
 ```
 
 ## Methodology
